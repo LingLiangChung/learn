@@ -9,5 +9,14 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
   <script defer src="./firebase.js"></script>
+
+
+  <button style="margin-left: 45%;" onclick="minusFunction()" id="minus"><h1> - </h1></button>
+  <button style="margin-left: 5%;" onclick="plusFunction()" id="plus"><h1>+</h1></button>
+  <script>
+    document.getElementById("minus").onclick = minusFunction(){
+      db.collection("score").document("default").setData(["current":   ]);
+    }
+  </script>
 </body>
 </html>
