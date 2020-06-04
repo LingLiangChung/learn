@@ -4,11 +4,22 @@ firebase.initializeApp({
 });
 
 var db = firebase.firestore();
+var documentRef = db.collection('score').doc('default');
 
-db.collection("score").doc('default').get().then((dataSnapshot) => {
+var content = window.document.getElementById('content');
+var minus = document.getElementById('minus');
+
+var score = 0;
+
+documentRef.get().then((dataSnapshot) => {
     var data = dataSnapshot.data();
-    var elem = window.document.getElementById('content');
-    console.log(elem);
-    elem.innerHTML = data.current;
+    score = data.current;
+    content.innerHTML = score;
 })
-.catch(function(error) { console.error("Error reading link: ", error); });
+.catch(function(error) { console.error('Error reading link: ', error); });
+
+function modify(action) {
+    score = action == 'plus' ? parseInt(content.innerHTML, 10) + 1 : parseInt(content.innerHTML, 10) - 1;
+    documentRef.set({'current': score});
+    content.innerHTML = score;
+}
